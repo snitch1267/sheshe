@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>para kay she</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, #E6E6FA, #D8BFD8, #DDA0DD, #E6E6FA);
+            background-size: 400% 400%;
+            animation: gradient 20s ease infinite;
+            font-family: 'Playfair Display', serif;
+            overflow: hidden;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            position: relative;
+            filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.15));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .envelope {
+            width: 400px;
+            height: 280px;
+            background: #fff;
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .envelope-front {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #E6E6FA, #DDA0DD);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .envelope:hover .envelope-front {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+
+        .flap {
+            position: absolute;
+            top: -140px;
+            left: 0;
+            right: 0;
+            height: 140px;
+            background: linear-gradient(45deg, #DDA0DD, #E6E6FA);
+            transform-origin: bottom;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            clip-path: polygon(0 100%, 50% 0, 100% 100%);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .envelope.opened .flap {
+            transform: translateY(140px) rotateX(180deg);
+        }
+
+        .tulip {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            z-index: 1;
+            transition: transform 0.4s ease;
+        }
+
+        .tulip:hover {
+            transform: translate(-50%, -50%) scale(1.15);
+        }
+
+        .tulip-flower {
+            width: 40px;
+            height: 60px;
+            background: #DDA0DD;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+            transform-origin: bottom center;
+            animation: sway 4s ease-in-out infinite;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tulip-flower::before,
+        .tulip-flower::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            background: #DDA0DD;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tulip-flower::before {
+            transform: rotate(-30deg);
+            left: -20px;
+        }
+
+        .tulip-flower::after {
+            transform: rotate(30deg);
+            right: -20px;
+        }
+
+        .tulip-stem {
+            width: 4px;
+            height: 50px;
+            background: #98FB98;
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tulip-leaf {
+            width: 20px;
+            height: 30px;
+            background: #98FB98;
+            position: absolute;
+            bottom: -30px;
+            border-radius: 0 20px 0 20px;
+            transform-origin: bottom left;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tulip-leaf.left {
+            left: -15px;
+            transform: rotate(-30deg);
+        }
+
+        .tulip-leaf.right {
+            right: -15px;
+            transform: rotate(30deg);
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(8deg); }
+        }
+
+        .letter {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            background: linear-gradient(135deg, #fff 0%, #faf8ff 100%);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(100%);
+            overflow: auto;
+        }
+
+        .envelope.opened .letter {
+            transform: translateY(0);
+            animation: letterAppear 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes letterAppear {
+            from {
+                opacity: 0;
+                transform: translateY(50%) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .letter-content {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5em;
+            line-height: 1.6;
+            color: #4a4a4a;
+            opacity: 0;
+            transform: translateY(20px);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .letter.visible .letter-content {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(221, 160, 221, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(221, 160, 221, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(221, 160, 221, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="envelope">
+            <div class="envelope-front">
+                <div class="flap"></div>
+                <div class="tulip">
+                    <div class="tulip-flower"></div>
+                    <div class="tulip-stem"></div>
+                    <div class="tulip-leaf left"></div>
+                    <div class="tulip-leaf right"></div>
+                </div>
+            </div>
+            <div class="letter">
+                <div class="letter-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const envelope = document.querySelector('.envelope');
+        const tulip = document.querySelector('.tulip');
+        const letter = document.querySelector('.letter');
+        const letterContent = document.querySelector('.letter-content');
+
+        const message = `Sa aking iniirog,
+
+I would like to be direct, as this has been long overdue. Sherilyn, I would like to ask your permission to court you. We have known each other for a while, and I have seen your flaws. However, the more I learn about you, the more my feelings grow.
+
+My intentions are pure, to make you feel loved and to give you the happiness you always deserve. It would be a privilege to be loved by someone like you, and there's no one else I would rather spend my days with. I am truly grateful for the love and support you have brought into my life, it has helped me conquer hurdles I once thought impossible to overcome. I will gladly accept whatever your decision is.
+
+XOXO,
+ardee`;
+
+        function typeWriter(element, text, i = 0) {
+            if (i < text.length) {
+                element.innerHTML = text.slice(0, i + 1);
+                setTimeout(() => typeWriter(element, text, i + 1), 50);
+            }
+        }
+
+        tulip.addEventListener('click', () => {
+            envelope.classList.add('opened');
+            letter.classList.add('visible');
+            setTimeout(() => {
+                typeWriter(letterContent, message);
+            }, 800);
+        });
+
+        // Enhanced parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            envelope.style.transform = `perspective(1000px) rotateY(${mouseX * 10 - 5}deg) rotateX(${mouseY * 10 - 5}deg)`;
+        });
+    </script>
+</body>
+</html>
